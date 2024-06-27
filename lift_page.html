@@ -8,6 +8,7 @@
 
 </head>
 <body>
+    
 <div id="lifts_and_floors" style="display: flex; flex-direction: column; align-items: flex-start;">
 <div class = "floor" style="display: flex; align-items: center; position: relative; margin-bottom: 20px;">
     <div class="buttons" style="display: flex; flex-direction: column; margin-right: 10px;">
@@ -24,6 +25,25 @@
 </div>
 
 <script>
+
+function createFloorElement() {
+    return `
+    <div class = "floor" style="display: flex; align-items: center; position: relative; margin-bottom: 20px;">
+    <div class="buttons" style="display: flex; flex-direction: column; margin-right: 10px;">
+        <input type="button" class="up" value="up" style="margin: 5px 0;">
+        <input type="button" class="down" value="down" style="margin: 5px 0;">
+    </div>
+    <div class="floor-element" style="position: relative;">
+        <div style="height: 100px; width: 1000px; background-color: lightgray; position: relative;">
+            <!-- Floor content here -->
+        </div>
+        <hr style="width: 100%; height: 5px; background-color: black; border: none; position: absolute; bottom: 0;">
+    </div>
+    </div>  
+    `;
+}
+
+
 const urlParams = new URLSearchParams(window.location.search);
 
 // Access specific parameters by their name
@@ -33,6 +53,13 @@ const lifts = urlParams.get('lifts');
 // Log the parameters to the console
 console.log('floors:', floors);
 console.log('Age:', lifts);
+
+
+const container = document.getElementById('lifts_and_floors');
+for (let i = 0; i < floors;i++) {
+    floorsHtml += createFloorElement();
+}
+container.innerHTML = floorsHtml;
 </script>
 </body>
 </html>
