@@ -5,12 +5,45 @@
 <style>
 
 #lifts_and_floors {
-    display : grid;
-    grid-template-columns: auto auto;
-    padding: 10px;
-    gap: 10px;
-    background-color: #2196F3;
+    width: 500px;
+    height : 500px;
+    display : flex;
+    background-color: DodgerBlue;
+    flex-direction: column;
 }
+
+.lift_buttons {
+    display : flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px;
+}
+.lift_container {
+    display : flex;
+    flex-direction: row;
+    gap: 10px;
+}
+.floor {
+    display : flex;
+    background-color: DodgerBlue;
+    flex-direction: row;
+}
+.lift {
+    background-color: #f1f1f1;
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+}
+
+.lift_here {
+    background-color: #000000;
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+}
+
+
 
 
 </style>
@@ -44,6 +77,7 @@
 
 </div> -->
 
+
 <div id="lifts_and_floors">
 
    <div class="floor">
@@ -52,12 +86,45 @@
             <button type="button" class="down">Down</button>
         </div>
         <div class="lift_container">
-            <div class="left-door">
-                
-            </div>
-            <div class="right-door">
+            <div class="lift"></div>
+            <div class="lift"></div>
+            <div class="lift"></div>
+        </div>
+    </div>
 
-            </div>
+    <div class="floor">
+        <div class="lift_buttons">
+            <button type="button" class="up">Up</button>
+            <button type="button" class="down">Down</button>
+        </div>
+        <div class="lift_container">
+            <div class="lift"></div>
+            <div class="lift"></div>
+            <div class="lift"></div>
+        </div>
+    </div>
+
+    <div class="floor">
+        <div class="lift_buttons">
+            <button type="button" class="up">Up</button>
+            <button type="button" class="down">Down</button>
+        </div>
+        <div class="lift_container">
+            <div class="lift"></div>
+            <div class="lift"></div>
+            <div class="lift"></div>
+        </div>
+    </div>
+
+    <div class="floor">
+        <div class="lift_buttons">
+            <button type="button" class="up">Up</button>
+            <button type="button" class="down">Down</button>
+        </div>
+        <div class="lift_container">
+            <div class="lift_here"></div>
+            <div class="lift_here"></div>
+            <div class="lift_here"></div>
         </div>
     </div>
 
