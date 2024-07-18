@@ -54,28 +54,7 @@
 <body>
 
 
-<!-- <div id="lifts_and_floors">
 
-    <div class="floors">
-    <div class = "floor">
-
-    </div>
-    <div class = "floor">
-
-    </div>
-    </div>
-
-
-    <div class="lifts">
-        <div class="lift">
-
-        </div>
-        <div class="lift">
-
-        </div>
-    </div>
-
-</div> -->
 
 
 <div id="lifts_and_floors">
@@ -96,14 +75,15 @@ const floors = urlParams.get('floors');
 const lifts = urlParams.get('lifts');
 
 // Log the parameters to the console
-console.log('floors:', floors);
-console.log('Age:', lifts);
+//console.log('floors:', floors);
+//console.log('Age:', lifts);
 // define two functions that will create floors and lifts
 
 function createLifts(noOfLifts) {
-    var liftHtml = '<div class="lift"></div>';
+    //var liftHtml = '<div class="lift"></div>';
     var liftsHtml = '';
     for(let i=0;i<noOfLifts;i++) {
+        var liftHtml = `<div class="lift" lift=${i} ></div>`;
         liftsHtml += liftHtml;
     }
     return liftsHtml;
@@ -111,27 +91,45 @@ function createLifts(noOfLifts) {
 
 function createFloors(noOfFloors,noOfLifts) {
     const liftsHtml = createLifts(noOfLifts)
-    const floorHtml = `
-    <div class="floor">
-        <div class="lift_buttons">
-            <button type="button" class="up">Up</button>
-            <button type="button" class="down">Down</button>
-        </div>
-        <div class="lift_container">
-            ${liftsHtml}
-        </div>
-    </div>
-    `;
+    // const floorHtml = `
+    // <div class="floor" floor=${i}>
+    //     <div class="lift_buttons">
+    //         <button type="button" class="up">Up</button>
+    //         <button type="button" class="down">Down</button>
+    //     </div>
+    //     <div class="lift_container">
+    //         ${liftsHtml}
+    //     </div>
+    // </div>
+    // `;
     var floorsHtml = ""
     for(let i =0;i<noOfFloors;i++) {
+        const floorHtml = `
+        <div class="floor" floor=${i}>
+            <div class="lift_buttons">
+                <button type="button" class="up">Up</button>
+                <button type="button" class="down">Down</button>
+            </div>
+            <div class="lift_container">
+                ${liftsHtml}
+            </div>
+        </div>
+        `;
         floorsHtml += floorHtml;
     }
     return floorsHtml
 }
 
 const lifts_and_floors = document.getElementById('lifts_and_floors');
+console.log(lifts_and_floors);
 lifts_and_floors.innerHTML = createFloors(floors,lifts);
 lifts_and_floors.style.width = `${lifts * 175}px`;
+
+//next steps
+// ability to update a specific div you want s
+function updateLift(floor,lift) {
+
+}
 
 
 </script>
