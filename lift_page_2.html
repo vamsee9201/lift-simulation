@@ -86,9 +86,18 @@
 
 <script>
 
-var floors = 5;
-var lifts = 7;
+// var floors = 5;
+// var lifts = 7;
 
+const urlParams = new URLSearchParams(window.location.search);
+
+// Access specific parameters by their name
+const floors = urlParams.get('floors');
+const lifts = urlParams.get('lifts');
+
+// Log the parameters to the console
+console.log('floors:', floors);
+console.log('Age:', lifts);
 // define two functions that will create floors and lifts
 
 function createLifts(noOfLifts) {
