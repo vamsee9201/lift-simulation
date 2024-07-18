@@ -83,7 +83,7 @@ function createLifts(noOfLifts) {
     //var liftHtml = '<div class="lift"></div>';
     var liftsHtml = '';
     for(let i=0;i<noOfLifts;i++) {
-        var liftHtml = `<div class="lift" lift=${i} ></div>`;
+        var liftHtml = `<div class="lift" lift="${i}" ></div>`;
         liftsHtml += liftHtml;
     }
     return liftsHtml;
@@ -105,7 +105,7 @@ function createFloors(noOfFloors,noOfLifts) {
     var floorsHtml = ""
     for(let i =0;i<noOfFloors;i++) {
         const floorHtml = `
-        <div class="floor" floor=${i}>
+        <div class="floor" floor="${i}">
             <div class="lift_buttons">
                 <button type="button" class="up">Up</button>
                 <button type="button" class="down">Down</button>
@@ -128,8 +128,12 @@ lifts_and_floors.style.width = `${lifts * 175}px`;
 //next steps
 // ability to update a specific div you want s
 function updateLift(floor,lift) {
-
+const floor1 = document.querySelector(`.floor[floor="${floor}"]`);
+const lift1 = floor1.querySelector(`.lift[lift="${lift}"]`);
+lift1.style.backgroundColor="#000000";
 }
+
+updateLift(2,2)
 
 
 </script>
