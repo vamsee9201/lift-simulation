@@ -80,65 +80,51 @@
 
 <div id="lifts_and_floors">
 
-   <!-- <div class="floor">
-        <div class="lift_buttons">
-            <button type="button" class="up">Up</button>
-            <button type="button" class="down">Down</button>
-        </div>
-        <div class="lift_container">
-            <div class="lift"></div>
-            <div class="lift"></div>
-            <div class="lift"></div>
-        </div>
-    </div>
-
-    <div class="floor">
-        <div class="lift_buttons">
-            <button type="button" class="up">Up</button>
-            <button type="button" class="down">Down</button>
-        </div>
-        <div class="lift_container">
-            <div class="lift"></div>
-            <div class="lift"></div>
-            <div class="lift"></div>
-        </div>
-    </div>
-
-    <div class="floor">
-        <div class="lift_buttons">
-            <button type="button" class="up">Up</button>
-            <button type="button" class="down">Down</button>
-        </div>
-        <div class="lift_container">
-            <div class="lift"></div>
-            <div class="lift"></div>
-            <div class="lift"></div>
-        </div>
-    </div>
-
-    <div class="floor">
-        <div class="lift_buttons">
-            <button type="button" class="up">Up</button>
-            <button type="button" class="down">Down</button>
-        </div>
-        <div class="lift_container">
-            <div class="lift_here"></div>
-            <div class="lift_here"></div>
-            <div class="lift_here"></div>
-        </div>
-    </div> -->
-
-    <!--  1) lift object - square/rectangle
-    2) arranging all floors and buttons
-    3) bottom border would be visible
-    4.) 
-    -->
+   
 
 </div>
 
 <script>
 
-    
+var floors = 5;
+var lifts = 7;
+
+// define two functions that will create floors and lifts
+
+function createLifts(noOfLifts) {
+    var liftHtml = '<div class="lift"></div>';
+    var liftsHtml = '';
+    for(let i=0;i<noOfLifts;i++) {
+        liftsHtml += liftHtml;
+    }
+    return liftsHtml;
+}
+
+function createFloors(noOfFloors,noOfLifts) {
+    const liftsHtml = createLifts(noOfLifts)
+    const floorHtml = `
+    <div class="floor">
+        <div class="lift_buttons">
+            <button type="button" class="up">Up</button>
+            <button type="button" class="down">Down</button>
+        </div>
+        <div class="lift_container">
+            ${liftsHtml}
+        </div>
+    </div>
+    `;
+    var floorsHtml = ""
+    for(let i =0;i<noOfFloors;i++) {
+        floorsHtml += floorHtml;
+    }
+    return floorsHtml
+}
+
+const lifts_and_floors = document.getElementById('lifts_and_floors');
+lifts_and_floors.innerHTML = createFloors(floors,lifts);
+lifts_and_floors.style.width = `${lifts * 175}px`;
+
+
 </script>
 
 </body>
