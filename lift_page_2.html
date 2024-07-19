@@ -107,8 +107,8 @@ function createFloors(noOfFloors,noOfLifts) {
         const floorHtml = `
         <div class="floor" floor="${i}">
             <div class="lift_buttons">
-                <button type="button" class="up">Up</button>
-                <button type="button" class="down">Down</button>
+                <button type="button" class="up" onclick="handleLiftButton(${i},'up')">Up</button>
+                <button type="button" class="down" onclick="handleLiftButton(${i},'down')">Down</button>
             </div>
             <div class="lift_container">
                 ${liftsHtml}
@@ -133,7 +133,14 @@ const lift1 = floor1.querySelector(`.lift[lift="${lift}"]`);
 lift1.style.backgroundColor="#000000";
 }
 
-updateLift(2,2)
+function handleLiftButton(floor, direction) {
+    updateLift(floor,0)
+}
+
+// updateLift(3,4)
+
+//add buttons onclick functions to all these floors and make sure to only update the first lift to black and make the rest white 
+
 
 
 </script>
