@@ -138,15 +138,19 @@ if (black==true) {
 }
 }
 
-function updateLift_v2(floor,liftNumber) {
-    const floorElement = document.querySelector(`.floor[floor="${floor}"]`);
-    const lifts = floorElement.querySelectorAll('.lift');
-    for(index =0;index<lifts.length;index++){
-        if (index==liftNumber) {
-            lifts[index].style.backgroundColor="#000000";
-        } else {
-            lifts[index].style.backgroundColor="#f1f1f1";
-        }
+function updateLift_v2(floorNumber,liftNumber) {
+
+    //const lifts = floorElement.querySelectorAll('.lift');
+    for(index=0;index<floors.length;index++){
+        const floorElement = document.querySelector(`.floor[floor="${index}"]`);
+        if(index==floorNumber){
+            const liftElement = floorElement.querySelector(`.lift[lift="${liftNumber}"]`);
+            liftElement.style.backgroundColor="#000000";
+        } 
+        // else {
+        //     const liftElement = floorElement.querySelector(`.lift[lift="${liftNumber}"]`);
+        //     liftElement.style.backgroundColor="#f1f1f1";
+        // }
     }
 }
 
