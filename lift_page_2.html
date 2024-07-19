@@ -141,16 +141,16 @@ if (black==true) {
 function updateLift_v2(floorNumber,liftNumber) {
 
     //const lifts = floorElement.querySelectorAll('.lift');
-    for(index=0;index<floors.length;index++){
+    for(index=0;index<floors;index++){
         const floorElement = document.querySelector(`.floor[floor="${index}"]`);
         if(index==floorNumber){
             const liftElement = floorElement.querySelector(`.lift[lift="${liftNumber}"]`);
             liftElement.style.backgroundColor="#000000";
         } 
-        // else {
-        //     const liftElement = floorElement.querySelector(`.lift[lift="${liftNumber}"]`);
-        //     liftElement.style.backgroundColor="#f1f1f1";
-        // }
+        else {
+             const liftElement = floorElement.querySelector(`.lift[lift="${liftNumber}"]`);
+             liftElement.style.backgroundColor="#f1f1f1";
+        }
     }
 }
 
@@ -159,7 +159,7 @@ for (l=0;l<lifts;l++) {
 }
 
 function handleLiftButton(floor, direction) {
-    liftToUpdate = 0
+    liftToUpdate = 4
     //updateLift(floor,liftToUpdate,true)
     updateLift_v2(floor,liftToUpdate)
 }
