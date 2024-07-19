@@ -127,14 +127,37 @@ lifts_and_floors.style.width = `${lifts * 175}px`;
 
 //next steps
 // ability to update a specific div you want s
-function updateLift(floor,lift) {
+function updateLift(floor,lift,black) {
 const floor1 = document.querySelector(`.floor[floor="${floor}"]`);
 const lift1 = floor1.querySelector(`.lift[lift="${lift}"]`);
-lift1.style.backgroundColor="#000000";
+
+if (black==true) {
+    lift1.style.backgroundColor="#000000";
+} else {
+    lift1.style.backgroundColor="#f1f1f1";
+}
+}
+
+function updateLift_v2(floor,liftNumber) {
+    const floorElement = document.querySelector(`.floor[floor="${floor}"]`);
+    const lifts = floorElement.querySelectorAll('.lift');
+    for(index =0;index<lifts.length;index++){
+        if (index==liftNumber) {
+            lifts[index].style.backgroundColor="#000000";
+        } else {
+            lifts[index].style.backgroundColor="#f1f1f1";
+        }
+    }
+}
+
+for (l=0;l<lifts;l++) {
+    updateLift(floors-1,l,true);
 }
 
 function handleLiftButton(floor, direction) {
-    updateLift(floor,0)
+    liftToUpdate = 0
+    //updateLift(floor,liftToUpdate,true)
+    updateLift_v2(floor,liftToUpdate)
 }
 
 // updateLift(3,4)
