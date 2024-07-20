@@ -139,8 +139,6 @@ if (black==true) {
 }
 
 function updateLift_v2(floorNumber,liftNumber) {
-
-    //const lifts = floorElement.querySelectorAll('.lift');
     for(index=0;index<floors;index++){
         const floorElement = document.querySelector(`.floor[floor="${index}"]`);
         if(index==floorNumber){
@@ -168,7 +166,8 @@ function handleLiftButton(floor, direction) {
 
 //add buttons onclick functions to all these floors and make sure to only update the first lift to black and make the rest white 
 
-
+// next step is to write to figure out which lift to update. Have to write algorithm for this
+// All the lifts have to work in tandem. Should probably create a 2D array and maintain positions and a function to update the value
 
 </script>
 
