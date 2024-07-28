@@ -173,29 +173,34 @@ function handleLiftButton(floor, direction) {
 // All the lifts have to work in tandem. Should probably create a 2D array and maintain positions and a function to update the value
 // lifts should move at tandem , need a function to look at the loop 
 
-var liftArray = [[0,0,0],[0,0,0],[0,1,0],[1,0,1]] 
+var liftArray = [[0,0,0],[0,0,0],[0,0,1],[1,1,0]] 
 function getLiftToUpdate(floor) {
 
 // calculate distance between current floor and the floor where the lift is in for a specific lift number
 // first lets calculate for lift 0
 console.log(`getting least distance for floor ${floor} `)
-distance = 1000
+var distance = 1000
+var liftToUpdate = 0;
 for(l=0;l<lifts;l++){
     var newDistance = 0;
+   
     console.log(`getting distance for lift ${l} `)
     for(f=0;f<floors;f++) {
     if (liftArray[f][l] == 1) {
         newDistance = Math.abs(floor - f);
+        
     }
     }
     console.log(newDistance)
     if(newDistance < distance) {
-        distance = newDistance
+        distance = newDistance;
+        liftToUpdate = l;
         console.log("updated")
     }
     // have to update the state
 }
-console.log(distance)
+console.log(`the closest lift is at the distance ${distance}`)
+console.log(`lift to update is ${liftToUpdate}`)
 
 
 
