@@ -138,7 +138,7 @@ if (black==true) {
 }
 }
 
-function updateLift_v2(floorNumber,liftNumber) {
+function updateLift_v2(floorNumber,originalFloor,liftNumber) {
     for(index=0;index<floors;index++){
         const floorElement = document.querySelector(`.floor[floor="${index}"]`);
         if(index==floorNumber){
@@ -151,6 +151,60 @@ function updateLift_v2(floorNumber,liftNumber) {
         }
     }
 }
+
+function delay(time) {
+    return new Promise(resolve => setTimeout(resolve, time));
+}
+
+async function updateLift_v3(floorNumber,originalFloor,liftNumber) {
+   // need two loops for updating the lifts
+   // down to up for loop
+    if(floorNumber < originalFloor) {
+        var floorElement = document.querySelector(`.floor[floor="${originalFloor}"]`);
+        var liftElement = floorElement.querySelector(`.lift[lift="${liftNumber}"]`);
+        liftElement.style.backgroundColor="#f1f1f1";
+        //count =  originalFloor - floorNumber -1;
+        //console.log(count)
+        for(up=originalFloor -1;up>floorNumber;up--) {
+            const floorElement = document.querySelector(`.floor[floor="${up}"]`);
+            const liftElement = floorElement.querySelector(`.lift[lift="${liftNumber}"]`);
+            console.log(up)
+            
+            liftElement.style.backgroundColor="#000000";
+            // find a way to get time out here
+            await delay(500);
+            liftElement.style.backgroundColor="#f1f1f1";
+        }
+        floorElement = document.querySelector(`.floor[floor="${floorNumber}"]`);
+        liftElement = floorElement.querySelector(`.lift[lift="${liftNumber}"]`);
+        liftElement.style.backgroundColor="#000000";
+    }
+   // up to down for loop
+    else if (floorNumber > originalFloor) {
+        var floorElement = document.querySelector(`.floor[floor="${originalFloor}"]`);
+        var liftElement = floorElement.querySelector(`.lift[lift="${liftNumber}"]`);
+        liftElement.style.backgroundColor="#f1f1f1";
+
+        for(down=originalFloor+1;down<floorNumber;down++){
+            const floorElement = document.querySelector(`.floor[floor="${down}"]`);
+            const liftElement = floorElement.querySelector(`.lift[lift="${liftNumber}"]`);
+            console.log(down)
+            
+            liftElement.style.backgroundColor="#000000";
+            // find a way to get time out here
+            await delay(500);
+            liftElement.style.backgroundColor="#f1f1f1";
+
+        }
+        floorElement = document.querySelector(`.floor[floor="${floorNumber}"]`);
+        liftElement = floorElement.querySelector(`.lift[lift="${liftNumber}"]`);
+        liftElement.style.backgroundColor="#000000";
+   }
+   else {
+    console.log("do nothing")
+   }
+}
+
 // hello
 
 for (l=0;l<lifts;l++) {
@@ -158,12 +212,12 @@ for (l=0;l<lifts;l++) {
 }
 
 function handleLiftButton(floor, direction) {
-    liftToUpdate = getLiftToUpdate(floor)
+    updateArray = getLiftToUpdate(floor)
     console.log(floor)
     console.log(direction)
     
     //updateLift(floor,liftToUpdate,true)
-    updateLift_v2(floor,liftToUpdate)
+    updateLift_v3(floor,updateArray[0],updateArray[1])
 }
 
 // updateLift(3,4)
@@ -231,7 +285,7 @@ liftArray[liftFloor][liftToUpdate] = 0;
 }
 console.log(liftArray)
 
-return liftToUpdate
+return [liftFloor,liftToUpdate]
 
 }
 
