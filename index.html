@@ -15,7 +15,9 @@
 const floors = document.getElementById("floors");
 floors.addEventListener("input", (event) => {
     if (parseInt(floors.value) <= 0) {
+        console.log("floors < 0")
         floors.setCustomValidity("Enter a number >= 0!")
+        
     } else {
         floors.setCustomValidity("")
     }
