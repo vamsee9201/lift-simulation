@@ -172,7 +172,7 @@ async function updateLift_v3(floorNumber,originalFloor,liftNumber) {
             
             liftElement.style.backgroundColor="#000000";
             // find a way to get time out here
-            await delay(500);
+            await delay(2500);
             liftElement.style.backgroundColor="#f1f1f1";
         }
         floorElement = document.querySelector(`.floor[floor="${floorNumber}"]`);
