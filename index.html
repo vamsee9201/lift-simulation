@@ -13,13 +13,23 @@
 </form>
 <script>
 const floors = document.getElementById("floors");
+const lifts = document.getElementById("lifts")
 floors.addEventListener("input", (event) => {
-    if (parseInt(floors.value) <= 0) {
-        console.log("floors < 0")
-        floors.setCustomValidity("Enter a number >= 0!")
+    if (parseInt(floors.value) <= 1) {
+        //console.log("floors < 0")
+        floors.setCustomValidity("The number of floors should be >= 1")
         
     } else {
         floors.setCustomValidity("")
+    }
+})
+lifts.addEventListener("input", (event) => {
+    if (parseInt(lifts.value) <= 0) {
+        //console.log("fl < 0")
+        lifts.setCustomValidity("The number of lifts should be >= 0")
+        
+    } else {
+        lifts.setCustomValidity("")
     }
 })
 
