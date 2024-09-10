@@ -103,5 +103,24 @@ body {
             </div>
         </div>
     </div>
+
+<script>
+
+function getFloorEl(floorNum) {
+    const floorEl = document.createElement("div");
+    floorEl.classList.add("floor");
+    floorEl.innerHTML += ` <div class="lift-buttons">
+                      <button class="call-lift-btn open-lift-btn" data-lift-num="${floorNum}">
+                          <i class="fa-solid fa-angle-up"></i>
+                      </button>
+                      <button class="call-lift-btn close-lift-btn" data-lift-num="${floorNum}">
+                          <i class="fa-solid fa-angle-down"></i>
+                      </button>
+                  </div>`;
+    return floorEl;
+}
+</script>
 </body>
+
+
 </html>
