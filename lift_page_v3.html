@@ -103,6 +103,8 @@ body {
             </div> -->
         </div>
     </div>
+    <button id="testButton">test button</button>
+
 
 <script>
 
@@ -155,9 +157,6 @@ function addLift(liftDistance) {
     //liftEls = document.querySelectorAll(".lift-container");
 }
 
-
-
-
 for (let f = 1; f <= floors - 1; f++) {
     addFloor(f);
 }
@@ -165,6 +164,30 @@ for (let f = 1; f <= floors - 1; f++) {
 for (let l = 1; l <= lifts; l++) {
     addLift(l * 120);
 }
+
+
+let button = document.getElementById('testButton');
+
+// Define a function that will run when the button is clicked
+function buttonClicked() {
+    const distance = 4;
+let liftsAll = document.querySelectorAll(".lift-container");
+lift = liftsAll[0]
+lift.style.transform = `translateY(${4 * 100 * -1}%)`;
+lift.style.transition = `transform ${1500 * distance}ms ease-in-out`;
+}
+
+// Wire the button to the action using addEventListener
+button.addEventListener('click', buttonClicked);
+
+
+
+
+
+
+
+
+
 
 
 
