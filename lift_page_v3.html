@@ -92,7 +92,7 @@ body {
                     <i class="fa-solid fa-angle-down"></i>
                 </button>
             </div>
-            <div class="lift-container">
+            <!-- <div class="lift-container">
 
                 <div class="left-door">
 
@@ -100,11 +100,17 @@ body {
                 <div class="right-door">
 
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 
 <script>
+
+const urlParams = new URLSearchParams(window.location.search);
+
+// Access specific parameters by their name
+const floors = urlParams.get('floors');
+const lifts = urlParams.get('lifts');
 
 function getFloorEl(floorNum) {
     const floorEl = document.createElement("div");
@@ -149,10 +155,17 @@ function addLift(liftDistance) {
     //liftEls = document.querySelectorAll(".lift-container");
 }
 
-addFloor()
-addLift(240)
-addLift(360)
-addFloor()
+
+
+
+for (let f = 1; f <= floors - 1; f++) {
+    addFloor(f);
+}
+
+for (let l = 1; l <= lifts; l++) {
+    addLift(l * 120);
+}
+
 
 
 
