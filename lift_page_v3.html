@@ -122,7 +122,9 @@ body {
             </div> -->
         </div>
     </div>
-    <button id="testButton">test button</button>
+    <button id="testButton">test up button</button>
+    <button id="testButton2">test down button</button>
+    
 
 
 <script>
@@ -220,22 +222,42 @@ function openCloseLift(index) {
   }, 3000);
 }
 
+function moveLift(currentFloor,destinationFloor,index) {
+    const distance = Math.abs(destinationFloor - currentFloor);
+    let liftsAll = document.querySelectorAll(".lift-container");
+    lift = liftsAll[index]
+    lift.style.transform = `translateY(${destinationFloor * 100 * -1}%)`;
+    lift.style.transition = `transform ${1500 * distance}ms ease-in-out`;
+    setTimeout(() => {
+    openCloseLift(index);
+  }, distance * 1500 + 1000);
+}
+
 // Define a function that will run when the button is clicked
 function buttonClicked() {
-    const distance = 4;
-let liftsAll = document.querySelectorAll(".lift-container");
-lift = liftsAll[0]
-lift.style.transform = `translateY(${4 * 100 * -1}%)`;
-lift.style.transition = `transform ${1500 * distance}ms ease-in-out`;
+//     const distance = 4;
+// let liftsAll = document.querySelectorAll(".lift-container");
+// lift = liftsAll[0]
+// lift.style.transform = `translateY(${4 * 100 * -1}%)`;
+// lift.style.transition = `transform ${1500 * distance}ms ease-in-out`;
 
-setTimeout(() => {
-    openCloseLift(0);
-  }, distance * 1500 + 1000);
+// setTimeout(() => {
+//     openCloseLift(0);
+//   }, distance * 1500 + 1000);
 //close(0);
+moveLift(0,4,0)
 }
 
 // Wire the button to the action using addEventListener
 button.addEventListener('click', buttonClicked);
+
+
+let button2 = document.getElementById('testButton2');
+function buttonClicked2() {
+moveLift(4,0,0)
+//close(0);
+}
+button2.addEventListener('click', buttonClicked2);
 
 
 
