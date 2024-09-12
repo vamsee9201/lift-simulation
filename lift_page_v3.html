@@ -77,6 +77,25 @@ body {
     padding: 0;
     font-family: 'Lora', serif;
 }
+.left-door-open {
+    transform: translateX(-100%);
+    transition: transform 2000ms ease-in-out;
+}
+
+.right-door-open {
+    transform: translateX(100%);
+    transition: transform 2000ms ease-in-out;
+}
+
+.left-door-close {
+    transform: translateX(0%);
+    transition: transform 2500ms ease-in-out;
+}
+
+.right-door-close {
+    transform: translateX(-0%);
+    transition: transform 2500ms ease-in-out;
+}
 
 </style>
 </head>
@@ -168,6 +187,39 @@ for (let l = 1; l <= lifts; l++) {
 
 let button = document.getElementById('testButton');
 
+// have to test open and close doors
+let leftDoors = document.querySelectorAll(".left-door");
+let rightDoors = document.querySelectorAll(".right-door");
+
+function openLift(index) {
+    //buttons.disabled = true;
+    console.log("open called")
+  rightDoors[index].classList.add("right-door-open");
+  leftDoors[index].classList.add("left-door-open");
+
+  rightDoors[index].classList.remove("right-door-close");
+  leftDoors[index].classList.remove("left-door-close");
+}
+
+function closeLift(index) {
+    console.log("close called")
+    rightDoors[index].classList.add("right-door-close");
+  leftDoors[index].classList.add("left-door-close");
+
+  rightDoors[index].classList.remove("right-door-open");
+  leftDoors[index].classList.remove("left-door-open");
+  //buttons.disabled = false;
+
+}
+
+function openCloseLift(index) {
+    console.log("open close called")
+    openLift(index);
+  setTimeout(() => {
+    closeLift(index);
+  }, 3000);
+}
+
 // Define a function that will run when the button is clicked
 function buttonClicked() {
     const distance = 4;
@@ -175,10 +227,21 @@ let liftsAll = document.querySelectorAll(".lift-container");
 lift = liftsAll[0]
 lift.style.transform = `translateY(${4 * 100 * -1}%)`;
 lift.style.transition = `transform ${1500 * distance}ms ease-in-out`;
+
+setTimeout(() => {
+    openCloseLift(0);
+  }, distance * 1500 + 1000);
+//close(0);
 }
 
 // Wire the button to the action using addEventListener
 button.addEventListener('click', buttonClicked);
+
+
+
+
+
+
 
 
 
