@@ -104,10 +104,10 @@ body {
     <div class="floors">
         <div class="floor" style="border-bottom: 1px solid gray">
             <div class="lift-buttons">
-                <button class="call-lift-btn open-lift-btn" data-lift-num="0">
+                <button class="call-lift-btn open-lift-btn" data-lift-num="0" onclick="queueLiftRequest(0,'up')">
                     <i class="fa-solid fa-angle-up"></i>
                 </button>
-                <button class="call-lift-btn close-lift-btn" data-lift-num="0">
+                <button class="call-lift-btn close-lift-btn" data-lift-num="0" onclick="queueLiftRequest(0,'down')">
                     <i class="fa-solid fa-angle-down"></i>
                 </button>
             </div>
@@ -139,16 +139,16 @@ function getFloorEl(floorNum) {
     const floorEl = document.createElement("div");
     floorEl.classList.add("floor");
     floorEl.innerHTML += ` <div class="lift-buttons">
-                      <button class="call-lift-btn open-lift-btn" data-lift-num="${floorNum}">
+                      <button class="call-lift-btn open-lift-btn" data-lift-num="${floorNum}" onclick="queueLiftRequest(${floorNum},'up')">
                           <i class="fa-solid fa-angle-up"></i>
                       </button>
-                      <button class="call-lift-btn close-lift-btn" data-lift-num="${floorNum}">
+                      <button class="call-lift-btn close-lift-btn" data-lift-num="${floorNum}" onclick="queueLiftRequest(${floorNum},'down')">
                           <i class="fa-solid fa-angle-down"></i>
                       </button>
                   </div>`;
     return floorEl;
 }
-
+//onclick="handleLiftButton(${i},'up')"
 function getLiftEl(liftDistance) {
   //const liftDistance = (lifts.length + 1) * 120;
 
@@ -313,21 +313,30 @@ class Queue {
 }
 
 // Example usage
-sampleRequest = {
-    "floor":5,
-    "direction":"down"
-}
-const queue = new Queue();
-queue.enqueue(10);
-queue.enqueue(20);
-queue.enqueue(30);
-queue.enqueue(sampleRequest)
-console.log(queue.printQueue()); // 10,20,30
-console.log(queue.dequeue());    // 10
-console.log(queue.printQueue()); // 20,30
-console.log(queue.front());      // 20
-console.log(queue.size());       // 2
+// sampleRequest = {
+//     "floor":5,
+//     "direction":"down"
+// }
+// const queue = new Queue();
+// queue.enqueue(10);
+// queue.enqueue(20);
+// queue.enqueue(30);
+// queue.enqueue(sampleRequest)
+// console.log(queue.printQueue()); // 10,20,30
+// console.log(queue.dequeue());    // 10
+// console.log(queue.printQueue()); // 20,30
+// console.log(queue.front());      // 20
+// console.log(queue.size());       // 2
 
+const requestQueue = new Queue()
+function queueLiftRequest(floor,direction) {
+request = {
+    "floor":floor,
+    "direction":direction
+}
+requestQueue.enqueue(request)
+console.log(requestQueue)
+}
 //end
 // have to test this queue thing to handle lift simulation requests.
 
