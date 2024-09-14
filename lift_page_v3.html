@@ -172,6 +172,7 @@ function addFloor(floorNum) {
     floorsContainer.prepend(getFloorEl(floorNum));
 }
 
+
 function addLift(liftDistance) {
     let floors = document.querySelectorAll(".floor");
     floors[floors.length - 1].append(getLiftEl(liftDistance));
@@ -268,6 +269,24 @@ sampleLiftState = {
     currentFloor:0
 }
 
+
+function createLiftStates() {
+    let liftStates = []
+    console.log("creating lift states")
+    for(let l=0;l<lifts;l++) {
+        state = {
+            "index":l,
+            "currentFloor":0,
+            "isBusy":false
+        }
+        console.log(state)
+        console.log("pushing state")
+        liftStates.push(state)
+    }
+    return liftStates
+}
+liftStates = createLiftStates()
+console.log(liftStates)
 //start
 
 class Queue {
@@ -337,6 +356,7 @@ request = {
 requestQueue.enqueue(request)
 console.log(requestQueue)
 }
+
 //end
 // have to test this queue thing to handle lift simulation requests.
 
