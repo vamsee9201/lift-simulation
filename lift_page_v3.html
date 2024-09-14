@@ -313,10 +313,15 @@ class Queue {
 }
 
 // Example usage
+sampleRequest = {
+    "floor":5,
+    "direction":"down"
+}
 const queue = new Queue();
 queue.enqueue(10);
 queue.enqueue(20);
 queue.enqueue(30);
+queue.enqueue(sampleRequest)
 console.log(queue.printQueue()); // 10,20,30
 console.log(queue.dequeue());    // 10
 console.log(queue.printQueue()); // 20,30
