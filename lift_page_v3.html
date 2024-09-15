@@ -399,6 +399,7 @@ function callLift() {
             }
         }
         moveLift(liftStates[closestLiftIndex].currentFloor,floor,closestLiftIndex);
+        requestQueue.dequeue();
     }
     else {
         console.log("queue is empty");
