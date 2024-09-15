@@ -105,10 +105,12 @@ body {
         <div class="floor" style="border-bottom: 1px solid gray">
             <div class="lift-buttons">
                 <button class="call-lift-btn open-lift-btn" data-lift-num="0" onclick="queueLiftRequest(0,'up')">
+                    U
                     <i class="fa-solid fa-angle-up"></i>
                 </button>
                 <button class="call-lift-btn close-lift-btn" data-lift-num="0" onclick="queueLiftRequest(0,'down')">
                     <i class="fa-solid fa-angle-down"></i>
+                    D
                 </button>
             </div>
             <!-- <div class="lift-container">
@@ -122,6 +124,7 @@ body {
             </div> -->
         </div>
     </div>
+ 
     
 
 
@@ -139,9 +142,11 @@ function getFloorEl(floorNum) {
     floorEl.innerHTML += ` <div class="lift-buttons">
                       <button class="call-lift-btn open-lift-btn" data-lift-num="${floorNum}" onclick="queueLiftRequest(${floorNum},'up')">
                           <i class="fa-solid fa-angle-up"></i>
+                          U
                       </button>
                       <button class="call-lift-btn close-lift-btn" data-lift-num="${floorNum}" onclick="queueLiftRequest(${floorNum},'down')">
                           <i class="fa-solid fa-angle-down"></i>
+                          D
                       </button>
                   </div>`;
     return floorEl;
@@ -186,7 +191,7 @@ for (let l = 1; l <= lifts; l++) {
 }
 
 
-let button = document.getElementById('testButton');
+//let button = document.getElementById('testButton');
 
 // have to test open and close doors
 let leftDoors = document.querySelectorAll(".left-door");
@@ -246,15 +251,15 @@ moveLift(0,4,0)
 }
 
 // Wire the button to the action using addEventListener
-button.addEventListener('click', buttonClicked);
+//button.addEventListener('click', buttonClicked);
 
 
-let button2 = document.getElementById('testButton2');
+//let button2 = document.getElementById('testButton2');
 function buttonClicked2() {
 moveLift(4,0,0)
 //close(0);
 }
-button2.addEventListener('click', buttonClicked2);
+//button2.addEventListener('click', buttonClicked2);
 
 // we tested the animations and transitions. We need to come up with the logic for simulating lifts. 
 
