@@ -347,6 +347,17 @@ class Queue {
 // console.log(queue.front());      // 20
 // console.log(queue.size());       // 2
 
+const requestAddedEvent = new Event("requestAdded")
+const liftIdleEvent = new Event("liftIdle")
+
+function dispatchRequestAdded() {
+  document.dispatchEvent(requestAddedEvent);
+}
+
+function dispatchliftIdle() {
+  document.dispatchEvent(liftIdleEvent);
+}
+
 const requestQueue = new Queue()
 function queueLiftRequest(floor,direction) {
 request = {
@@ -355,7 +366,28 @@ request = {
 }
 requestQueue.enqueue(request)
 console.log(requestQueue)
+dispatchRequestAdded()
 }
+
+document.addEventListener("requestAdded", () => {
+    callLift();
+});
+
+function callLift() {
+    //take a peek at the first request in the queue
+    if (!requestQueue.isEmpty()) {
+        console.log("lift should be called");
+        const {direction,floor} = requestQueue.front()
+        console.log(direction)
+        console.log(floor)
+    }
+    else {
+        console.log("queue is empty");
+    }
+}
+
+
+
 
 //end
 // have to test this queue thing to handle lift simulation requests.
