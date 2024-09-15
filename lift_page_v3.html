@@ -212,6 +212,10 @@ function closeLift(index) {
   rightDoors[index].classList.remove("right-door-open");
   leftDoors[index].classList.remove("left-door-open");
   //buttons.disabled = false;
+  setTimeout(() => {
+    liftStates[index].isBusy = false;
+    dispatchliftIdle();
+  }, 2500);
 
 }
 
@@ -224,6 +228,7 @@ function openCloseLift(index) {
 }
 
 function moveLift(currentFloor,destinationFloor,index) {
+    liftStates[index].isBusy = true;
     const distance = Math.abs(destinationFloor - currentFloor);
     let liftsAll = document.querySelectorAll(".lift-container");
     lift = liftsAll[index]
@@ -232,6 +237,9 @@ function moveLift(currentFloor,destinationFloor,index) {
     setTimeout(() => {
     openCloseLift(index);
   }, distance * 1500 + 1000);
+
+  //set current floor
+  liftStates[index].currentFloor = destinationFloor;
 }
 
 // Define a function that will run when the button is clicked
