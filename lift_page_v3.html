@@ -122,8 +122,6 @@ body {
             </div> -->
         </div>
     </div>
-    <button id="testButton">test up button</button>
-    <button id="testButton2">test down button</button>
     
 
 
@@ -371,6 +369,12 @@ document.addEventListener("requestAdded", () => {
     callLift();
 });
 
+document.addEventListener("liftIdle", () => {
+    callLift();
+});
+
+
+
 function callLift() {
     //take a peek at the first request in the queue
     if (!requestQueue.isEmpty()) {
@@ -379,8 +383,10 @@ function callLift() {
         closestLiftIndex = lifts+1;
         leastDistance = lifts+1;
         //getting closest Lift index
+        allLiftsBusy = true;
         for(let ls =0;ls<liftStates.length;ls++) {
             if(!liftStates[ls].isBusy) {
+                allLiftsBusy = false
                 distance = Math.abs(floor - liftStates[ls].currentFloor)
                 if (distance < leastDistance) {
                     leastDistance = distance;
@@ -388,10 +394,15 @@ function callLift() {
                 }
             }
         }
+        if(!allLiftsBusy) {
         console.log("current floor of the closest lift: " + liftStates[closestLiftIndex].currentFloor);
         console.log("destination floor: "+ floor);
         moveLift(liftStates[closestLiftIndex].currentFloor,floor,closestLiftIndex);
         requestQueue.dequeue();
+        }
+        else {
+            console.log("all lifts busy");
+        }
     }
     else {
         console.log("queue is empty");
