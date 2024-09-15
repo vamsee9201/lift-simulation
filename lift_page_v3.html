@@ -244,16 +244,6 @@ function moveLift(currentFloor,destinationFloor,index) {
 
 // Define a function that will run when the button is clicked
 function buttonClicked() {
-//     const distance = 4;
-// let liftsAll = document.querySelectorAll(".lift-container");
-// lift = liftsAll[0]
-// lift.style.transform = `translateY(${4 * 100 * -1}%)`;
-// lift.style.transition = `transform ${1500 * distance}ms ease-in-out`;
-
-// setTimeout(() => {
-//     openCloseLift(0);
-//   }, distance * 1500 + 1000);
-//close(0);
 moveLift(0,4,0)
 }
 
@@ -398,6 +388,8 @@ function callLift() {
                 }
             }
         }
+        console.log("current floor of the closest lift: " + liftStates[closestLiftIndex].currentFloor);
+        console.log("destination floor: "+ floor);
         moveLift(liftStates[closestLiftIndex].currentFloor,floor,closestLiftIndex);
         requestQueue.dequeue();
     }
