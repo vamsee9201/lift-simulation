@@ -378,8 +378,19 @@ function callLift() {
     if (!requestQueue.isEmpty()) {
         console.log("lift should be called");
         const {direction,floor} = requestQueue.front()
-        console.log(direction)
-        console.log(floor)
+        closestLiftIndex = lifts+1;
+        leastDistance = lifts+1;
+        //getting closest Lift index
+        for(let ls =0;ls<liftStates.length;ls++) {
+            if(!liftStates[ls].isBusy) {
+                distance = Math.abs(floor - liftStates[ls].currentFloor)
+                if (distance < leastDistance) {
+                    leastDistance = distance;
+                    closestLiftIndex = ls;
+                }
+            }
+        }
+        moveLift(liftStates[closestLiftIndex].currentFloor,floor,closestLiftIndex);
     }
     else {
         console.log("queue is empty");
