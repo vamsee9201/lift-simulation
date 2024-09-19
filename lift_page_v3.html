@@ -204,8 +204,8 @@ function openLift(index) {
   leftDoors[index].classList.remove("left-door-close");
 }
 
-function closeLift(index) {
-    console.log("close called")
+function closeLift(index,floor,direction) {
+    console.log("close called" + " " + floor + " " + direction);
     rightDoors[index].classList.add("right-door-close");
   leftDoors[index].classList.add("left-door-close");
 
@@ -214,20 +214,23 @@ function closeLift(index) {
   //buttons.disabled = false;
   setTimeout(() => {
     liftStates[index].isBusy = false;
+    //enableLiftButton
     dispatchliftIdle();
+    enableLiftButton(floor,direction);
   }, 2500);
 
 }
 
-function openCloseLift(index) {
+function openCloseLift(index,floor,direction) {
     console.log("open close called")
     openLift(index);
   setTimeout(() => {
-    closeLift(index);
+    closeLift(index,floor,direction);
   }, 3000);
+  //console.log("open close called" + floor + direction)
 }
 
-function moveLift(currentFloor,destinationFloor,index) {
+function moveLift(currentFloor,destinationFloor,direction,index) {
     liftStates[index].isBusy = true;
     const distance = Math.abs(destinationFloor - currentFloor);
     let liftsAll = document.querySelectorAll(".lift-container");
@@ -235,11 +238,12 @@ function moveLift(currentFloor,destinationFloor,index) {
     lift.style.transform = `translateY(${destinationFloor * 100 * -1}%)`;
     lift.style.transition = `transform ${1500 * distance}ms ease-in-out`;
     setTimeout(() => {
-    openCloseLift(index);
+    openCloseLift(index,destinationFloor,direction);
   }, distance * 1500 + 1000);
 
   //set current floor
   liftStates[index].currentFloor = destinationFloor;
+  console.log("move lift , button called:" + direction);
 }
 
 // Define a function that will run when the button is clicked
@@ -362,6 +366,7 @@ request = {
     "floor":floor,
     "direction":direction
 }
+disableLiftButton(floor,direction)
 requestQueue.enqueue(request)
 console.log(requestQueue)
 dispatchRequestAdded()
@@ -399,7 +404,7 @@ function callLift() {
         if(!allLiftsBusy) {
         console.log("current floor of the closest lift: " + liftStates[closestLiftIndex].currentFloor);
         console.log("destination floor: "+ floor);
-        moveLift(liftStates[closestLiftIndex].currentFloor,floor,closestLiftIndex);
+        moveLift(liftStates[closestLiftIndex].currentFloor,floor,direction,closestLiftIndex);
         requestQueue.dequeue();
         }
         else {
@@ -424,6 +429,21 @@ function disableLiftButton(floor,direction) {
         //console.log("disabling down button")
         //console.log(allDownButtons.length - 1 - floor)
         allDownButtons[allDownButtons.length - floor].disabled = true;
+    }
+}
+function enableLiftButton(floor,direction) {
+    console.log("enabling button")
+    if (direction == "up") {
+        const allUpButtons = document.querySelectorAll(".open-lift-btn");
+        //console.log(allUpButtons)
+        allUpButtons[allUpButtons.length - 1 - floor].disabled = false;
+    }
+    if (direction == "down") {
+        const allDownButtons = document.querySelectorAll(".close-lift-btn");
+        //console.log(allDOwnButtons)
+        //console.log("disabling down button")
+        //console.log(allDownButtons.length - 1 - floor)
+        allDownButtons[allDownButtons.length - floor].disabled = false;
     }
 }
 //disableLiftButton(4,"up")
