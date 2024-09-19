@@ -411,6 +411,24 @@ function callLift() {
     }
 }
 
+function disableLiftButton(floor,direction) {
+    console.log("disabling button")
+    if (direction == "up") {
+        const allUpButtons = document.querySelectorAll(".open-lift-btn");
+        //console.log(allUpButtons)
+        allUpButtons[allUpButtons.length - 1 - floor].disabled = true;
+    }
+    if (direction == "down") {
+        const allDownButtons = document.querySelectorAll(".close-lift-btn");
+        //console.log(allDOwnButtons)
+        //console.log("disabling down button")
+        //console.log(allDownButtons.length - 1 - floor)
+        allDownButtons[allDownButtons.length - floor].disabled = true;
+    }
+}
+//disableLiftButton(4,"up")
+//disableLiftButton(9,"down")
+
 
 
 
